@@ -10,8 +10,8 @@ WORKDIR /app
 # Sao chép tệp JAR vào container
 COPY target/config-service-0.0.1-SNAPSHOT.jar /app/config-service-0.0.1-SNAPSHOT.jar
 
-# Expose port của ứng dụng
-EXPOSE 8763
-
 # Câu lệnh để chạy ứng dụng
 ENTRYPOINT ["java", "-jar", "/app/config-service-0.0.1-SNAPSHOT.jar"]
+
+# Expose port của ứng dụng
+EXPOSE 8763

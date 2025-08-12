@@ -9,7 +9,7 @@ import static vti.dtn.auth_service.oauth2.common.OAuth2Constant.*;
 
 @Slf4j
 public class OAuth2UserInfoFactory {
-    public OAuth2UserInfo getOAuth2UserInfo(String registrationId, Map<String,Object> attributes) {
+    public static OAuth2UserInfo getOAuth2UserInfo(String registrationId, Map<String,Object> attributes) {
         if(!StringUtils.hasText(registrationId)){
             log.error("registrationId is empty");
             throw new IllegalArgumentException("registrationId is empty");
