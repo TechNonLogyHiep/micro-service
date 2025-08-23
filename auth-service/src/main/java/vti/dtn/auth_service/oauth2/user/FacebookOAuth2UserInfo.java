@@ -14,21 +14,21 @@ public class FacebookOAuth2UserInfo extends OAuth2UserInfo {
 
     @Override
     public String getId() {
-        return attributes.get(ID).toString();
+        return String.valueOf(attributes.get(ID));
     }
 
     @Override
     public String getName() {
-        return attributes.get(NAME).toString();
+        return String.valueOf(attributes.get(NAME));
     }
 
     @Override
     public String getEmail() {
-        return attributes.get(EMAIL).toString();
+        return String.valueOf(attributes.get(EMAIL));
     }
 
     @Override
     public String getImageUrl() {
-        return attributes.get(PICTURE).toString();
+        return String.valueOf(attributes.get(PICTURE));
     }
 }

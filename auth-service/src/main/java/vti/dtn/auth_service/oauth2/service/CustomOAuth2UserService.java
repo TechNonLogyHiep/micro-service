@@ -1,6 +1,7 @@
 package vti.dtn.auth_service.oauth2.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -23,14 +24,19 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        return super.loadUser(userRequest);
+        OAuth2User oAuth2User = super.loadUser(userRequest);
+        try {
+            return processOAuth2User(userRequest, oAuth2User);
+        } catch (Exception ex) {
+            throw new InternalAuthenticationServiceException(ex.getMessage(), ex.getCause());
+        }
     }
     private OAuth2User processOAuth2User(OAuth2UserRequest oAuth2UserRequest,OAuth2User oAuth2User) throws OAuth2AuthenticationException {
         String registrationId = oAuth2UserRequest.getClientRegistration().getRegistrationId();
         Map<String,Object> attributes = oAuth2User.getAttributes();
         OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(registrationId, attributes);
 
-        Optional<UserEntity> userOptional = userRepository.findByEmail(oAuth2UserInfo.getName());
+        Optional<UserEntity> userOptional = userRepository.findByUsername(oAuth2UserInfo.getName());
 
         UserEntity user;
         if(userOptional.isPresent()){

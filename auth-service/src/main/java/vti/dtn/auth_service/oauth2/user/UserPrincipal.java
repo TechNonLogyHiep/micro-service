@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import vti.dtn.auth_service.entity.UserEntity;
@@ -23,7 +22,7 @@ public class UserPrincipal implements OAuth2User , UserDetails {
 
     public static UserPrincipal create(UserEntity user) {
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(ROLE_USER));
-        return new UserPrincipal(user.getUsername(),user.getPassword(),user.getAuthorities(),Map.of());
+        return new UserPrincipal(user.getUsername(),user.getPassword(),authorities,Map.of());
     }
 
     @Override

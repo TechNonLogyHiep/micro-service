@@ -3,6 +3,7 @@ package vti.dtn.account_service.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import java.util.List;
 @RequestMapping("/api/v1/accounts")
 public class AccountController {
     private final AccountService accountService;
-
+    //docker exec -it kafka kafka-topics --list --bootstrap-server localhost:9092
     @Value("${greeting.text}")
     private String greetingText;
 
@@ -30,5 +31,11 @@ public class AccountController {
     @GetMapping("/greeting")
     public String greet(){
         return greetingText;
+    }
+
+    @GetMapping("/test-kafka")
+    public ResponseEntity<Void> testKafka(){
+
+        return ResponseEntity.ok().build();
     }
 }
