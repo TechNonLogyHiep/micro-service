@@ -21,6 +21,7 @@ public class SecurityConfiguration {
             "/api/v1/auth/login",
             "/api/v1/auth/refresh-token",
             "/api/v1/auth/verify",
+            "/api/v1/accounts",
             "/oauth2/redirect",
             "/oauth2/authorize",
             "/oauth2/authorize/github",

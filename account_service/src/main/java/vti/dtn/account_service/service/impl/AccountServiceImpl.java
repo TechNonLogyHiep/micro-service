@@ -8,6 +8,7 @@ import vti.dtn.account_service.repository.AccountRepository;
 import vti.dtn.account_service.service.AccountService;
 
 import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
